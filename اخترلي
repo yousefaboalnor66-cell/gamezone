@@ -1,0 +1,50 @@
+total 20
+drwxr-xr-x 4 buildbot buildbot 4096 Aug 12 02:31 .
+drwxr-xr-x 1 buildbot root     4096 Aug 12 02:31 ..
+drwxr-xr-x 7 buildbot buildbot 4096 Aug 12 02:31 .git
+drwxr-xr-x 2 buildbot buildbot 4096 Aug 12 02:31 .netlify
+---
+name: general-database
+description: Use this skill whenever the task involves storing, persisting, querying, or managing data — including CRUD operations, collections, records, user data, or any application state that needs to survive between requests. Covers both relational databases (Netlify Database) and object storage (Netlify Blobs).
+---
+
+# Data Storage on Netlify
+
+Prefer Netlify Database over Netlify Blobs for any application data — records, collections, lists, user-generated content,
+or anything you would store as rows. Use Blobs only for files, binary assets (images, video), or cached responses.
+
+## Application data: Netlify Database
+
+**Netlify Database** is the recommended solution for storing application data. It provides a fully managed Postgres database
+with zero configuration — install the `@netlify/database` package, and a database is automatically provisioned for your site.
+
+Use Netlify Database when you need to store:
+
+- Records, collections, or lists
+- User-generated content
+- Any data you would naturally model as rows in a table
+- Data requiring queries, filtering, or transactions
+
+There are two recommended approaches:
+
+- **Drizzle ORM** (recommended): Use Drizzle ORM with the native Netlify Database adapter for type-safe schema
+  definitions and a query builder. Install `@netlify/database`, `drizzle-orm@beta`, and `drizzle-kit@beta`. The
+  `@beta` dist-tag is required — the Netlify Database adapter only exists on the beta release line.
+- **Native `@netlify/database` driver**: Use the `sql` tagged template literal for direct SQL queries. Install `@netlify/database`.
+
+IMPORTANT: Any code that assumes a different database schema requires a corresponding migration file in
+`netlify/database/migrations/`. Without a migration, the database schema will not change and the application will break.
+
+See the **netlify-database** skill for complete setup instructions and usage examples.
+
+## Files and binary assets: Netlify Blobs
+
+**Netlify Blobs** is the recommended solution for file and binary storage.
+
+Use Netlify Blobs when you need:
+
+- File and image storage
+- Binary assets (images, video, PDFs)
+- Cached responses
+
+See the **netlify-blobs** skill for complete setup instructions and usage examples.

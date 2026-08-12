@@ -1,0 +1,1158 @@
+اخترلي — الموقع الكامل
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>اخترلي | محتار؟ اخترلي</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Tahoma,sans-serif;
+    background:#070914;
+    color:white;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    height:72px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#0b0d1a;
+    border-bottom:1px solid #24283b;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:900;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin-right:22px;
+    font-size:15px;
+}
+
+nav a:hover{
+    color:#a78bfa;
+}
+
+/* ================= HERO SLIDER ================= */
+
+.hero{
+    padding:25px 5%;
+}
+
+.slider{
+    position:relative;
+    max-width:1250px;
+    height:440px;
+    margin:auto;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+.slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    transform:scale(1.04);
+    transition:.7s;
+    display:flex;
+    align-items:center;
+    padding:50px 7%;
+}
+
+.slide.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+.travel{
+    background:
+    radial-gradient(circle at 75% 30%,#38bdf855,transparent 28%),
+    linear-gradient(120deg,#071a35,#075985,#10172b);
+}
+
+.phone{
+    background:
+    radial-gradient(circle at 75% 40%,#a855f755,transparent 30%),
+    linear-gradient(120deg,#090b17,#291044,#111827);
+}
+
+.slide-content{
+    max-width:620px;
+    z-index:2;
+}
+
+.tag{
+    display:inline-block;
+    padding:8px 15px;
+    border-radius:30px;
+    background:#ffffff18;
+    border:1px solid #ffffff30;
+    margin-bottom:18px;
+}
+
+.slide h1{
+    font-size:48px;
+    line-height:1.15;
+    margin-bottom:15px;
+}
+
+.slide p{
+    font-size:18px;
+    color:#e5e7eb;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.cta{
+    border:0;
+    background:white;
+    color:#111827;
+    padding:14px 25px;
+    border-radius:12px;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.visual{
+    position:absolute;
+    left:7%;
+    font-size:125px;
+    filter:drop-shadow(0 20px 30px #0008);
+}
+
+.controls{
+    position:absolute;
+    bottom:20px;
+    right:7%;
+    display:flex;
+    gap:8px;
+    z-index:5;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border:0;
+    border-radius:50%;
+    background:#ffffff55;
+    cursor:pointer;
+}
+
+.dot.active{
+    width:28px;
+    border-radius:10px;
+    background:white;
+}
+
+/* ================= SECTIONS ================= */
+
+section{
+    padding:55px 6%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    font-size:32px;
+}
+
+.title p{
+    color:#9ca3af;
+    margin-top:8px;
+}
+
+/* ================= CHOICES ================= */
+
+.choices{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.choice{
+    padding:35px;
+    border-radius:20px;
+    background:#101321;
+    border:1px solid #252a40;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.choice:hover{
+    transform:translateY(-6px);
+    border-color:#8b5cf6;
+}
+
+.choice-icon{
+    font-size:50px;
+    margin-bottom:12px;
+}
+
+.choice h3{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.choice p{
+    color:#9ca3af;
+    line-height:1.7;
+}
+
+/* ================= SEARCH ================= */
+
+.search{
+    max-width:700px;
+    margin:0 auto 30px;
+}
+
+.search input{
+    width:100%;
+    padding:16px 20px;
+    border-radius:13px;
+    border:1px solid #292e45;
+    outline:none;
+    background:#101321;
+    color:white;
+    font-size:16px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.cards{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:#101321;
+    border:1px solid #252a40;
+    border-radius:18px;
+    padding:22px;
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#8b5cf6;
+}
+
+.card-icon{
+    height:150px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+    border-radius:13px;
+    margin-bottom:15px;
+    background:linear-gradient(135deg,#171b30,#2a1742);
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.card p{
+    color:#9ca3af;
+    line-height:1.7;
+}
+
+.rating{
+    color:#facc15;
+    margin:10px 0;
+}
+
+.price{
+    color:#a78bfa;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.card button{
+    width:100%;
+    padding:12px;
+    border:0;
+    border-radius:10px;
+    background:#7c3aed;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.card button:hover{
+    background:#8b5cf6;
+}
+
+/* ================= COMPARISON ================= */
+
+.compare{
+    max-width:900px;
+    margin:auto;
+    padding:25px;
+    border-radius:20px;
+    background:#101321;
+    border:1px solid #252a40;
+}
+
+.compare-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.compare select{
+    width:100%;
+    padding:13px;
+    background:#080b15;
+    color:white;
+    border:1px solid #30364e;
+    border-radius:10px;
+}
+
+.compare button{
+    margin-top:20px;
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border-radius:12px;
+    background:#171a2b;
+    line-height:1.8;
+}
+
+/* ================= TRAVEL ================= */
+
+.travel-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.destination{
+    background:#101321;
+    border:1px solid #252a40;
+    border-radius:18px;
+    padding:25px;
+}
+
+.destination-icon{
+    font-size:60px;
+    margin-bottom:15px;
+}
+
+.destination h3{
+    margin-bottom:8px;
+}
+
+.destination p{
+    color:#9ca3af;
+    line-height:1.7;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    padding:45px 20px;
+    border-top:1px solid #24283b;
+    color:#777;
+}
+
+footer strong{
+    color:#a855f7;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px){
+
+    nav{
+        display:none;
+    }
+
+    .slider{
+        height:470px;
+    }
+
+    .slide{
+        padding:35px 7%;
+        align-items:flex-start;
+    }
+
+    .slide h1{
+        font-size:36px;
+    }
+
+    .slide p{
+        font-size:16px;
+    }
+
+    .visual{
+        bottom:55px;
+        left:10%;
+        font-size:80px;
+    }
+
+    .choices{
+        grid-template-columns:1fr;
+    }
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .travel-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .compare-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+اختر<span>لي</span> ✨
+</div>
+
+<nav>
+
+<a href="#home">
+الرئيسية
+</a>
+
+<a href="#choose">
+اخترلي
+</a>
+
+<a href="#phones">
+الموبايلات
+</a>
+
+<a href="#travel">
+السفر
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<main id="home">
+
+<section class="hero">
+
+<div class="slider">
+
+
+<!-- السفر -->
+
+<div class="slide travel active">
+
+<div class="slide-content">
+
+<div class="tag">
+✈️ سفر
+</div>
+
+<h1>
+محتار تسافر فين؟
+<br>
+خلّي <b>اخترلي</b> يختارلك
+</h1>
+
+<p>
+جاوب على كام سؤال ونساعدك تلاقي
+وجهة تناسب ميزانيتك ومدة رحلتك.
+</p>
+
+<button class="cta"
+onclick="go('travel')">
+
+اكتشف وجهتك ←
+
+</button>
+
+</div>
+
+<div class="visual">
+✈️ 🌍
+</div>
+
+</div>
+
+
+<!-- الموبايلات -->
+
+<div class="slide phone">
+
+<div class="slide-content">
+
+<div class="tag">
+📱 موبايلات
+</div>
+
+<h1>
+محتار بين Samsung و iPhone؟
+<br>
+خلّي <b>اخترلي</b> يساعدك
+</h1>
+
+<p>
+حدد ميزانيتك واستخدامك
+وشوف الاختيار الأنسب ليك.
+</p>
+
+<button class="cta"
+onclick="go('phones')">
+
+اختار موبايلك ←
+
+</button>
+
+</div>
+
+<div class="visual">
+📱 ⚡ 📱
+</div>
+
+</div>
+
+
+<div class="controls">
+
+<button class="dot active"
+onclick="showSlide(0)">
+</button>
+
+<button class="dot"
+onclick="showSlide(1)">
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CHOOSE ================= -->
+
+<section id="choose">
+
+<div class="title">
+
+<h2>
+إنت عايز تختار إيه؟ 🤔
+</h2>
+
+<p>
+اختار القسم وابدأ
+</p>
+
+</div>
+
+
+<div class="choices">
+
+
+<div class="choice"
+onclick="go('phones')">
+
+<div class="choice-icon">
+📱
+</div>
+
+<h3>
+اختار موبايل
+</h3>
+
+<p>
+اختار الموبايل المناسب ليك
+حسب ميزانيتك واستخدامك.
+</p>
+
+</div>
+
+
+<div class="choice"
+onclick="go('travel')">
+
+<div class="choice-icon">
+✈️
+</div>
+
+<h3>
+اختار وجهة سفر
+</h3>
+
+<p>
+اكتشف وجهة مناسبة لميزانيتك
+وعدد أيام رحلتك.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= PHONES ================= -->
+
+<section id="phones">
+
+<div class="title">
+
+<h2>
+📱 اختار موبايلك
+</h2>
+
+<p>
+اختار من مجموعة الهواتف
+</p>
+
+</div>
+
+
+<div class="search">
+
+<input
+id="phoneSearch"
+type="text"
+placeholder="🔎 ابحث عن موبايل..."
+>
+
+</div>
+
+
+<div class="cards"
+id="phoneCards">
+
+
+<div class="card"
+data-name="Samsung Galaxy S26 Ultra">
+
+<div class="card-icon">
+📱
+</div>
+
+<h3>
+Samsung Galaxy S26 Ultra
+</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>
+أداء قوي، شاشة ممتازة
+ومناسب للألعاب والتصوير.
+</p>
+
+<div class="price">
+فئة رائدة
+</div>
+
+<button
+onclick="selectPhone('Samsung Galaxy S26 Ultra')">
+
+اختاره
+
+</button>
+
+</div>
+
+
+<div class="card"
+data-name="iPhone 17 Pro Max">
+
+<div class="card-icon">
+📱
+</div>
+
+<h3>
+iPhone 17 Pro Max
+</h3>
+
+<div class="rating">
+★★★★★
+</div>
+
+<p>
+أداء قوي وتجربة iOS
+وكاميرا متقدمة.
+</p>
+
+<div class="price">
+فئة رائدة
+</div>
+
+<button
+onclick="selectPhone('iPhone 17 Pro Max')">
+
+اختاره
+
+</button>
+
+</div>
+
+
+<div class="card"
+data-name="Gaming Phone">
+
+<div class="card-icon">
+🎮
+</div>
+
+<h3>
+Gaming Phone
+</h3>
+
+<div class="rating">
+★★★★☆
+</div>
+
+<p>
+مخصص لمحبي الألعاب
+والأداء العالي.
+</p>
+
+<div class="price">
+للألعاب
+</div>
+
+<button
+onclick="selectPhone('Gaming Phone')">
+
+اختاره
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================= COMPARE ================= -->
+
+<section>
+
+<div class="title">
+
+<h2>
+⚔️ قارنلي
+</h2>
+
+<p>
+قارن بين موبايلين
+</p>
+
+</div>
+
+
+<div class="compare">
+
+<div class="compare-grid">
+
+<select id="phone1">
+
+<option>
+Samsung Galaxy S26 Ultra
+</option>
+
+<option>
+iPhone 17 Pro Max
+</option>
+
+<option>
+Gaming Phone
+</option>
+
+</select>
+
+
+<select id="phone2">
+
+<option>
+iPhone 17 Pro Max
+</option>
+
+<option>
+Samsung Galaxy S26 Ultra
+</option>
+
+<option>
+Gaming Phone
+</option>
+
+</select>
+
+</div>
+
+
+<button onclick="comparePhones()">
+
+قارن الآن ⚡
+
+</button>
+
+
+<div class="result"
+id="compareResult">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TRAVEL ================= -->
+
+<section id="travel">
+
+<div class="title">
+
+<h2>
+✈️ اختر وجهتك
+</h2>
+
+<p>
+وجهات مقترحة
+</p>
+
+</div>
+
+
+<div class="travel-grid">
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🇹🇷
+</div>
+
+<h3>
+إسطنبول
+</h3>
+
+<p>
+مدينة تجمع بين التاريخ
+والتسوق والطعام والمناظر الجميلة.
+</p>
+
+</div>
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🇦🇪
+</div>
+
+<h3>
+دبي
+</h3>
+
+<p>
+مدينة عصرية مليئة
+بالأنشطة والأماكن الترفيهية.
+</p>
+
+</div>
+
+
+<div class="destination">
+
+<div class="destination-icon">
+🇬🇷
+</div>
+
+<h3>
+اليونان
+</h3>
+
+<p>
+وجهة رائعة لعشاق
+البحر والجزر والمناظر الطبيعية.
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>
+اختر<span style="color:#a855f7">
+لي
+</span>
+✨
+</h2>
+
+<p>
+محتار؟ اخترلي.
+</p>
+
+<p>
+© 2026 اخترلي
+</p>
+
+</footer>
+
+
+<script>
+
+/* ================= SLIDER ================= */
+
+let currentSlide = 0;
+
+const slides =
+document.querySelectorAll(".slide");
+
+const dots =
+document.querySelectorAll(".dot");
+
+
+function showSlide(index){
+
+    currentSlide = index;
+
+    slides.forEach(
+        (slide,i)=>{
+            slide.classList.toggle(
+                "active",
+                i === index
+            );
+        }
+    );
+
+    dots.forEach(
+        (dot,i)=>{
+            dot.classList.toggle(
+                "active",
+                i === index
+            );
+        }
+    );
+
+}
+
+
+setInterval(
+    ()=>{
+        currentSlide =
+        (currentSlide + 1)
+        % slides.length;
+
+        showSlide(currentSlide);
+
+    },
+    5000
+);
+
+
+/* ================= SCROLL ================= */
+
+function go(id){
+
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ================= PHONE SEARCH ================= */
+
+const phoneSearch =
+document.getElementById("phoneSearch");
+
+const phoneCards =
+document.querySelectorAll("#phoneCards .card");
+
+
+phoneSearch.addEventListener(
+    "input",
+    function(){
+
+        const value =
+        this.value
+        .toLowerCase()
+        .trim();
+
+        phoneCards.forEach(
+            card=>{
+
+                const name =
+                card.dataset.name
+                .toLowerCase();
+
+                card.style.display =
+                name.includes(value)
+                ? "block"
+                : "none";
+
+            }
+        );
+
+    }
+);
+
+
+/* ================= SELECT PHONE ================= */
+
+function selectPhone(name){
+
+    alert(
+        "اخترت: " + name +
+        "\nقريبًا هنضيف نظام الترشيح الكامل."
+    );
+
+}
+
+
+/* ================= COMPARE ================= */
+
+function comparePhones(){
+
+    const p1 =
+    document.getElementById("phone1").value;
+
+    const p2 =
+    document.getElementById("phone2").value;
+
+    const result =
+    document.getElementById("compareResult");
+
+
+    if(p1 === p2){
+
+        result.style.display = "block";
+
+        result.innerHTML =
+        "⚠️ اختار موبايلين مختلفين للمقارنة.";
+
+        return;
+
+    }
+
+
+    result.style.display = "block";
+
+
+    result.innerHTML =
+
+    "📱 <b>" + p1 + "</b>" +
+    "<br>⚡ أداء قوي" +
+    "<br><br>" +
+
+    "📱 <b>" + p2 + "</b>" +
+    "<br>⚡ أداء قوي" +
+    "<br><br>" +
+
+    "🏆 المقارنة التفصيلية هنضيفها في المرحلة القادمة.";
+
+}
+
+
+/* ================= ESC ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Escape"){
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GameZone 🎮</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,Tahoma,sans-serif;
+ background:#050812;
+ color:white
+}
+header{
+ background:#090d18;
+ border-bottom:1px solid #252a40;
+ padding:18px 5%;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ position:sticky;
+ top:0;
+ z-index:5
+}
+.logo{
+ font-size:25px;
+ font-weight:bold
+}
+.logo span{color:#a52cff}
+nav a{
+ color:#ddd;
+ text-decoration:none;
+ margin:0 10px;
+ font-size:14px
+}
+nav a:hover{color:#a52cff}
+
+.hero{
+ min-height:430px;
+ padding:80px 7%;
+ display:flex;
+ align-items:center;
+ background:
+ radial-gradient(circle at 70%,#3b1761,#101426 40%,#050812 75%)
+}
+.hero h1{
+ font-size:55px;
+ line-height:1.1;
+ margin:0
+}
+.hero h1 span{color:#a52cff}
+.hero p{
+ color:#bbbfd0;
+ font-size:18px;
+ max-width:550px
+}
+.btn{
+ display:inline-block;
+ background:linear-gradient(135deg,#761cff,#b329ff);
+ color:white;
+ padding:14px 25px;
+ border-radius:10px;
+ text-decoration:none;
+ font-weight:bold
+}
+
+section{padding:35px 5%}
+.title{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ margin-bottom:20px
+}
+.title h2{margin:0}
+.games{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:15px
+}
+.card{
+ background:#0c1120;
+ border:1px solid #252a40;
+ border-radius:12px;
+ overflow:hidden;
+ transition:.2s
+}
+.card:hover{
+ transform:translateY(-5px);
+ border-color:#9b2cff
+}
+.pic{
+ height:190px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:25px;
+ font-weight:bold
+}
+.p1{background:linear-gradient(135deg,#6b4b13,#15100a)}
+.p2{background:linear-gradient(135deg,#a52b18,#280b10)}
+.p3{background:linear-gradient(135deg,#6c91c0,#182638)}
+.p4{background:linear-gradient(135deg,#65a8df,#163553)}
+.p5{background:linear-gradient(135deg,#506d35,#10180f)}
+.info{padding:12px}
+.info h3{margin:0 0 5px}
+.info small{color:#aaa}
+.star{color:#ffd43b;float:left}
+
+.platforms{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px
+}
+.platform{
+ padding:25px;
+ background:#0c1120;
+ border:1px solid #252a40;
+ border-radius:14px
+}
+.platform h3{margin-top:0}
+.platform button{
+ background:#7b19ff;
+ color:white;
+ border:0;
+ padding:9px 18px;
+ border-radius:7px
+}
+
+.news{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px
+}
+.box{
+ background:#0c1120;
+ border:1px solid #252a40;
+ border-radius:14px;
+ padding:20px
+}
+.box li{
+ padding:12px 0;
+ border-bottom:1px solid #22283a
+}
+
+footer{
+ padding:35px 5%;
+ border-top:1px solid #252a40;
+ color:#999;
+ text-align:center
+}
+
+@media(max-width:800px){
+ nav{display:none}
+ .hero h1{font-size:40px}
+ .games{grid-template-columns:repeat(2,1fr)}
+ .platforms,.news{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){
+ .games{grid-template-columns:1fr 1fr}
+ .platforms,.news{grid-template-columns:1fr}
+ .pic{height:150px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">GAME<span>ZONE</span> 🎮</div>
+<nav>
+<a href="#">الرئيسية</a>
+<a href="#games">الموبايل</a>
+<a href="#games">PC</a>
+<a href="#games">PlayStation</a>
+<a href="#games">Xbox</a>
+<a href="#news">الأخبار</a>
+</nav>
+</header>
+
+<section class="hero">
+<div>
+<h1>عالم الألعاب<br><span>بين يديك</span></h1>
+<p>
+اكتشف أحدث الألعاب، اقرأ المراجعات،
+وتابع أخبار الألعاب لكل المنصات.
+</p>
+<a class="btn" href="#games">استكشف الآن 🎮</a>
+</div>
+</section>
+
+<section id="games">
+<div class="title">
+<h2>🔥 أحدث الألعاب</h2>
+<span>عرض الكل ←</span>
+</div>
+
+<div class="games">
+
+<div class="card">
+<div class="pic p1">ELDEN RING</div>
+<div class="info"><h3>Elden Ring</h3><small>PC</small><span class="star">★ 4.8</span></div>
+</div>
+
+<div class="card">
+<div class="pic p2">CALL OF DUTY</div>
+<div class="info"><h3>Call of Duty</h3><small>PC</small><span class="star">★ 4.6</span></div>
+</div>
+
+<div class="card">
+<div class="pic p3">GOD OF WAR</div>
+<div class="info"><h3>God of War</h3><small>PlayStation</small><span class="star">★ 4.9</span></div>
+</div>
+
+<div class="card">
+<div class="pic p4">FORZA</div>
+<div class="info"><h3>Forza Horizon</h3><small>Xbox</small><span class="star">★ 4.7</span></div>
+</div>
+
+<div class="card">
+<div class="pic p5">PUBG</div>
+<div class="info"><h3>PUBG Mobile</h3><small>Mobile</small><span class="star">★ 4.5</span></div>
+</div>
+
+</div>
+</section>
+
+<section>
+<div class="title">
+<h2>🎮 تصفح حسب المنصة</h2>
+</div>
+
+<div class="platforms">
+
+<div class="platform">
+<h3>📱 Mobile Games</h3>
+<p>ألعاب الموبايل</p>
+<button>استكشف</button>
+</div>
+
+<div class="platform">
+<h3>💻 PC Games</h3>
+<p>ألعاب الكمبيوتر</p>
+<button>استكشف</button>
+</div>
+
+<div class="platform">
+<h3>🎮 PlayStation</h3>
+<p>ألعاب بلايستيشن</p>
+<button>استكشف</button>
+</div>
+
+<div class="platform">
+<h3>🟢 Xbox Games</h3>
+<p>ألعاب إكس بوكس</p>
+<button>استكشف</button>
+</div>
+
+</div>
+</section>
+
+<section id="news">
+<div class="news">
+
+<div class="box">
+<h2>🔥 الأكثر شعبية</h2>
+<ul>
+<li>GTA V ⭐ 4.8</li>
+<li>Minecraft ⭐ 4.7</li>
+<li>Fortnite ⭐ 4.4</li>
+<li>EA FC ⭐ 4.3</li>
+</ul>
+</div>
+
+<div class="box">
+<h2>⭐ أحدث المراجعات</h2>
+<ul>
+<li>The Legend of Zelda — 9.5</li>
+<li>Star Wars Jedi — 9.0</li>
+<li>Resident Evil 4 — 8.8</li>
+</ul>
+</div>
+
+<div class="box">
+<h2>📰 آخر الأخبار</h2>
+<ul>
+<li>أحدث أخبار عالم الألعاب</li>
+<li>تحديثات الألعاب الجديدة</li>
+<li>إعلانات الألعاب القادمة</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<footer>
+<h2>GAMEZONE</h2>
+<p>بوابتك لعالم الألعاب 🎮</p>
+<p>© 2026 GameZone</p>
+</footer>
+
+</body>
+                   </html>

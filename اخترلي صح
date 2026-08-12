@@ -1,0 +1,815 @@
+// Mobile phones data
+const mobiles = [
+    {
+        id: 1,
+        name: 'iPhone 15 Pro',
+        price: '5,999 ريال',
+        budget: 'premium',
+        usage: ['performance', 'camera'],
+        specs: 'A17 Pro | 6.1" Super Retina',
+        emoji: '📱',
+        features: ['أداء عالي', 'كاميرا احترافية', 'بطارية طويلة']
+    },
+    {
+        id: 2,
+        name: 'Samsung Galaxy S24',
+        price: '5,499 ريال',
+        budget: 'premium',
+        usage: ['performance', 'camera', 'gaming'],
+        specs: 'Snapdragon 8 Gen 3 | 6.2" AMOLED',
+        emoji: '📱',
+        features: ['أداء عالي جداً', 'شاشة رائعة', 'كاميرا متقدمة']
+    },
+    {
+        id: 3,
+        name: 'Xiaomi 14',
+        price: '3,999 ريال',
+        budget: 'mid',
+        usage: ['camera', 'performance'],
+        specs: 'Snapdragon 8 Gen 2 | 6.36" AMOLED',
+        emoji: '📱',
+        features: ['قيمة ممتازة', 'كاميرا قوية', 'أداء جيد']
+    },
+    {
+        id: 4,
+        name: 'OnePlus 12',
+        price: '3,499 ريال',
+        budget: 'mid',
+        usage: ['performance', 'gaming'],
+        specs: 'Snapdragon 8 Gen 3 | 6.7" AMOLED',
+        emoji: '📱',
+        features: ['أداء عالي', 'شحن سريع', 'سعر جيد']
+    },
+    {
+        id: 5,
+        name: 'Samsung Galaxy A54',
+        price: '1,699 ريال',
+        budget: 'budget',
+        usage: ['battery'],
+        specs: 'Exynos 1380 | 6.4" AMOLED',
+        emoji: '📱',
+        features: ['بطارية طويلة', 'شاشة رائعة', 'سعر اقتصادي']
+    },
+    {
+        id: 6,
+        name: 'Redmi Note 13',
+        price: '1,299 ريال',
+        budget: 'budget',
+        usage: ['battery', 'gaming'],
+        specs: 'MediaTek Helio G99 | 6.67" IPS',
+        emoji: '📱',
+        features: ['سعر رخيص جداً', 'بطارية ضخمة', 'شاشة كبيرة']
+    }
+];
+
+// Travel destinations data
+const destinations = [
+    {
+        id: 1,
+        name: 'دبي',
+        price: '3,000 - 5,000 ريال',
+        budget: 'mid',
+        days: 'short',
+        type: 'beach',
+        emoji: '🏙️',
+        description: 'مدينة حديثة مع شواطئ جميلة',
+        features: ['تسوق', 'شاطئ', 'ترفيه']
+    },
+    {
+        id: 2,
+        name: 'جزر المالديف',
+        price: '8,000+ ريال',
+        budget: 'luxury',
+        days: 'long',
+        type: 'beach',
+        emoji: '🏝️',
+        description: 'جنة استوائية للاسترخاء والغطس',
+        features: ['غطس', 'شاطئ فاخر', 'حمام']
+    },
+    {
+        id: 3,
+        name: 'تركيا',
+        price: '2,000 - 4,000 ريال',
+        budget: 'mid',
+        days: 'medium',
+        type: 'culture',
+        emoji: '🕌',
+        description: 'وجهة ثقافية بين الشرق والغرب',
+        features: ['معالم تاريخية', 'ثقافة', 'طعام']
+    },
+    {
+        id: 4,
+        name: 'الأردن',
+        price: '1,500 - 2,500 ريال',
+        budget: 'budget',
+        days: 'medium',
+        type: 'adventure',
+        emoji: '🏜️',
+        description: 'مغامرات في الصحراء والطبيعة',
+        features: ['وادي رم', 'البحر الميت', 'طبيعة']
+    },
+    {
+        id: 5,
+        name: 'إيطاليا',
+        price: '5,000 - 7,000 ريال',
+        budget: 'luxury',
+        days: 'long',
+        type: 'culture',
+        emoji: '🇮🇹',
+        description: 'رومانسية وفن وثقافة عميقة',
+        features: ['فن', 'معمار', 'طعام فاخر']
+    },
+    {
+        id: 6,
+        name: 'مصر',
+        price: '1,000 - 2,000 ريال',
+        budget: 'budget',
+        days: 'medium',
+        type: 'culture',
+        emoji: '🏛️',
+        description: 'حضارة عريقة وآثار عظيمة',
+        features: ['أهرامات', 'نيل', 'متاحف']
+    },
+    {
+        id: 7,
+        name: 'تايلاند',
+        price: '2,000 - 3,500 ريال',
+        budget: 'mid',
+        days: 'medium',
+        type: 'beach',
+        emoji: '🏖️',
+        description: 'شواطئ جميلة مع ثقافة آسيوية',
+        features: ['شاطئ', 'جزائر', 'طعم محلي']
+    },
+    {
+        id: 8,
+        name: 'كندا',
+        price: '6,000+ ريال',
+        budget: 'luxury',
+        days: 'long',
+        type: 'adventure',
+        emoji: '🏔️',
+        description: 'طبيعة خلابة وحياة برية',
+        features: ['جبال', 'غابات', 'حياة برية']
+    }
+];
+
+let currentBannerIndex = 0;
+let selectedMobiles = [];
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    renderMobiles(mobiles);
+    renderDestinations(destinations);
+    startBannerSlider();
+});
+
+// Banner slider
+function startBannerSlider() {
+    setInterval(() => {
+        currentBannerIndex = (currentBannerIndex + 1) % 2;
+        showBanner(currentBannerIndex);
+    }, 5000);
+}
+
+function showBanner(index) {
+    const banners = document.querySelectorAll('.banner');
+    const dots = document.querySelectorAll('.dot');
+    
+    banners.forEach(banner => banner.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    banners[index].classList.add('active');
+    dots[index].classList.add('active');
+    currentBannerIndex = index;
+}
+
+function currentBanner(index) {
+    showBanner(index);
+}
+
+// Smooth scroll
+function scrollTo(selector) {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Render mobiles
+function renderMobiles(items) {
+    const grid = document.getElementById('mobilesGrid');
+    grid.innerHTML = '';
+    
+    items.forEach(mobile => {
+        const card = document.createElement('div');
+        card.className = 'mobile-card';
+        card.innerHTML = `
+            <div class="card-image">${mobile.emoji}</div>
+            <div class="card-content">
+                <h3>${mobile.name}</h3>
+                <p class="card-specs">${mobile.specs}</p>
+                <p class="card-price">${mobile.price}</p>
+                <div class="card-features">
+                    ${mobile.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+                </div>
+                <button class="btn-select" onclick="selectMobile(${mobile.id}, '${mobile.name}')">اختار</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// Render destinations
+function renderDestinations(items) {
+    const grid = document.getElementById('destinationsGrid');
+    grid.innerHTML = '';
+    
+    items.forEach(dest => {
+        const card = document.createElement('div');
+        card.className = 'destination-card';
+        card.innerHTML = `
+            <div class="card-image">${dest.emoji}</div>
+            <div class="card-content">
+                <h3>${dest.name}</h3>
+                <p class="card-specs">${dest.description}</p>
+                <p class="card-price">${dest.price}</p>
+                <div class="card-features">
+                    ${dest.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+                </div>
+                <button class="btn-select">اختار الوجهة</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// Filter mobiles
+function filterMobiles() {
+    const budget = document.getElementById('budget').value;
+    const usage = document.getElementById('usage').value;
+    
+    let filtered = mobiles;
+    
+    if (budget) {
+        filtered = filtered.filter(m => m.budget === budget);
+    }
+    
+    if (usage) {
+        filtered = filtered.filter(m => m.usage.includes(usage));
+    }
+    
+    renderMobiles(filtered);
+}
+
+// Filter destinations
+function filterDestinations() {
+    const budget = document.getElementById('travelBudget').value;
+    const days = document.getElementById('days').value;
+    const type = document.getElementById('type').value;
+    
+    let filtered = destinations;
+    
+    if (budget) {
+        filtered = filtered.filter(d => d.budget === budget);
+    }
+    
+    if (days) {
+        filtered = filtered.filter(d => d.days === days);
+    }
+    
+    if (type) {
+        filtered = filtered.filter(d => d.type === type);
+    }
+    
+    renderDestinations(filtered);
+}
+
+// Select mobile
+function selectMobile(id, name) {
+    alert(`تم اختيار: ${name}`);
+}* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #007bff;
+}
+
+/* Banner Slider */
+.banner-slider {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.banner {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: fadeIn 0.5s;
+}
+
+.banner.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 60px 20px;
+}
+
+.banner-text {
+    flex: 1;
+    color: white;
+}
+
+.banner-text h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.banner-text p {
+    font-size: 20px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.banner-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder-travel,
+.placeholder-mobile {
+    font-size: 150px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Buttons */
+.btn-primary {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: white;
+    width: 30px;
+    border-radius: 6px;
+}
+
+/* Sections */
+.section {
+    padding: 80px 20px;
+    background: white;
+    margin: 20px 0;
+}
+
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-subtitle {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+/* Filters */
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.filter-group select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    background: white;
+    transition: border-color 0.3s;
+}
+
+.filter-group select:hover,
+.filter-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Grid Layouts */
+.mobiles-grid,
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.mobile-card,
+.destination-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.mobile-card:hover,
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-specs {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card-price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.feature-tag {
+    background: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+.btn-select {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-select:hover {
+    background: #0056b3;
+}
+
+/* Footer */
+.footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 15px;
+        font-size: 14px;
+    }
+
+    .banner-text h1 {
+        font-size: 32px;
+    }
+
+    .banner-text p {
+        font-size: 16px;
+    }
+
+    .placeholder-travel,
+    .placeholder-mobile {
+        font-size: 80px;
+    }
+
+    .banner-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .section h2 {
+        font-size: 24px;
+    }
+
+    .mobiles-grid,
+    .destinations-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        gap: 10px;
+        font-size: 12px;
+    }
+
+    .banner-text h1 {
+        font-size: 24px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اخترلي - EKHTARLI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">اخترلي</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#mobiles">الموبايلات</a></li>
+                <li><a href="#travel">السفر</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner Slider -->
+    <section class="banner-slider" id="home">
+        <!-- Travel Banner -->
+        <div class="banner active" data-banner="travel">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1>محتار تسافر فين؟</h1>
+                    <p>خلّي اخترلي يختارلك وجهتك</p>
+                    <button class="btn-primary" onclick="scrollTo('#travel')">اكتشف وجهتك →</button>
+                </div>
+                <div class="banner-image">
+                    <div class="placeholder-travel">✈️</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobiles Banner -->
+        <div class="banner" data-banner="mobiles">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1>محتار بين Samsung و iPhone؟</h1>
+                    <p>خلّي اخترلي يساعدك</p>
+                    <button class="btn-primary" onclick="scrollTo('#mobiles')">اختار موبايلك →</button>
+                </div>
+                <div class="banner-image">
+                    <div class="placeholder-mobile">📱</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dots Indicator -->
+        <div class="dots">
+            <span class="dot active" onclick="currentBanner(0)"></span>
+            <span class="dot" onclick="currentBanner(1)"></span>
+        </div>
+    </section>
+
+    <!-- Mobiles Section -->
+    <section class="section" id="mobiles">
+        <div class="container">
+            <h2>📱 اختار موبايلك المناسب</h2>
+            <p class="section-subtitle">اختار حسب احتياجاتك</p>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="budget">الميزانية:</label>
+                    <select id="budget" onchange="filterMobiles()">
+                        <option value="">الكل</option>
+                        <option value="budget">اقتصادي (أقل من 2000)</option>
+                        <option value="mid">متوسط (2000 - 5000)</option>
+                        <option value="premium">فاخر (أكثر من 5000)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="usage">الاستخدام:</label>
+                    <select id="usage" onchange="filterMobiles()">
+                        <option value="">الكل</option>
+                        <option value="gaming">ألعاب</option>
+                        <option value="camera">تصوير</option>
+                        <option value="battery">بطارية قوية</option>
+                        <option value="performance">أداء عالي</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mobiles-grid" id="mobilesGrid">
+                <!-- Phones will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Section -->
+    <section class="section" id="travel">
+        <div class="container">
+            <h2>✈️ اختار وجهتك المناسبة</h2>
+            <p class="section-subtitle">اكتشف أجمل الوجهات السياحية</p>
+
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="travelBudget">الميزانية:</label>
+                    <select id="travelBudget" onchange="filterDestinations()">
+                        <option value="">الكل</option>
+                        <option value="budget">اقتصادي</option>
+                        <option value="mid">متوسط</option>
+                        <option value="luxury">فاخر</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="days">عدد الأيام:</label>
+                    <select id="days" onchange="filterDestinations()">
+                        <option value="">الكل</option>
+                        <option value="short">3-5 أيام</option>
+                        <option value="medium">5-10 أيام</option>
+                        <option value="long">أكثر من 10 أيام</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="type">نوع الرحلة:</label>
+                    <select id="type" onchange="filterDestinations()">
+                        <option value="">الكل</option>
+                        <option value="beach">شاطئية</option>
+                        <option value="adventure">مغامرة</option>
+                        <option value="culture">ثقافية</option>
+                        <option value="family">عائلية</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="destinations-grid" id="destinationsGrid">
+                <!-- Destinations will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 اخترلي - EKHTARLI. جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>في ماركتينج سيت او بريسونال بروتوفايل او e-commerce  store او travel sit او اينتورنال ديشبورد او هابيت تريكيرnode_modules/
+.DS_Store
+*.log
+.env

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GameZone 🎮</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#050812;
+    color:white;
+}
+
+/* الهيدر */
+header{
+    background:#090d18;
+    border-bottom:1px solid #252a40;
+    padding:16px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#a52cff;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    margin:0 8px;
+    font-size:14px;
+    cursor:pointer;
+}
+
+nav a:hover{
+    color:#a52cff;
+}
+
+/* البحث */
+.search-box{
+    padding:15px 5%;
+    background:#070b15;
+    border-bottom:1px solid #20263a;
+    text-align:center;
+}
+
+.search-box input{
+    width:90%;
+    max-width:600px;
+    padding:13px 18px;
+    border-radius:10px;
+    border:1px solid #30374f;
+    background:#0c1120;
+    color:white;
+    outline:none;
+    font-size:16px;
+}
+
+.search-box input:focus{
+    border-color:#9b2cff;
+}
+
+/* البطل */
+.hero{
+    min-height:430px;
+    padding:80px 7%;
+    display:flex;
+    align-items:center;
+    background:
+    radial-gradient(circle at 70%,#3b1761,#101426 40%,#050812 75%);
+}
+
+.hero h1{
+    font-size:55px;
+    line-height:1.1;
+    margin:0;
+}
+
+.hero h1 span{
+    color:#a52cff;
+}
+
+.hero p{
+    color:#bbbfd0;
+    font-size:18px;
+    max-width:550px;
+    line-height:1.8;
+}
+
+.btn{
+    display:inline-block;
+    background:linear-gradient(135deg,#761cff,#b329ff);
+    color:white;
+    padding:14px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+    border:0;
+}
+
+/* الأقسام */
+section{
+    padding:35px 5%;
+}
+
+.title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.title h2{
+    margin:0;
+}
+
+.show-all{
+    color:#b329ff;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* الألعاب */
+.games{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+
+.card{
+    background:#0c1120;
+    border:1px solid #252a40;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.25s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:#9b2cff;
+    box-shadow:0 8px 25px rgba(155,44,255,.15);
+}
+
+.pic{
+    height:190px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:10px;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.p1{
+    background:linear-gradient(135deg,#6b4b13,#15100a);
+}
+
+.p2{
+    background:linear-gradient(135deg,#a52b18,#280b10);
+}
+
+.p3{
+    background:linear-gradient(135deg,#6c91c0,#182638);
+}
+
+.p4{
+    background:linear-gradient(135deg,#65a8df,#163553);
+}
+
+.p5{
+    background:linear-gradient(135deg,#506d35,#10180f);
+}
+
+.info{
+    padding:12px;
+}
+
+.info h3{
+    margin:0 0 7px;
+}
+
+.info small{
+    color:#aaa;
+}
+
+.star{
+    color:#ffd43b;
+    float:left;
+}
+
+/* المنصات */
+.platforms{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.platform{
+    padding:25px;
+    background:#0c1120;
+    border:1px solid #252a40;
+    border-radius:14px;
+}
+
+.platform:hover{
+    border-color:#9b2cff;
+}
+
+.platform h3{
+    margin-top:0;
+}
+
+.platform button{
+    background:#7b19ff;
+    color:white;
+    border:0;
+    padding:9px 18px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.platform button:hover{
+    background:#9b2cff;
+}
+
+/* الأخبار */
+.news{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.box{
+    background:#0c1120;
+    border:1px solid #252a40;
+    border-radius:14px;
+    padding:20px;
+}
+
+.box ul{
+    padding:0;
+    list-style:none;
+}
+
+.box li{
+    padding:12px 0;
+    border-bottom:1px solid #22283a;
+}
+
+/* رسالة عدم وجود نتائج */
+.no-results{
+    display:none;
+    text-align:center;
+    padding:40px;
+    color:#aaa;
+}
+
+/* النافذة */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-content{
+    background:#0c1120;
+    border:1px solid #9b2cff;
+    border-radius:16px;
+    width:100%;
+    max-width:500px;
+    padding:25px;
+    position:relative;
+    box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+
+.close{
+    position:absolute;
+    top:10px;
+    left:15px;
+    font-size:28px;
+    cursor:pointer;
+    color:#aaa;
+}
+
+.close:hover{
+    color:white;
+}
+
+.modal-title{
+    font-size:28px;
+    margin-top:10px;
+    color:#b329ff;
+}
+
+.modal-content p{
+    color:#bbbfd0;
+    line-height:1.8;
+}
+
+.modal-rating{
+    color:#ffd43b;
+    font-size:20px;
+}
+
+/* الفوتر */
+footer{
+    padding:35px 5%;
+    border-top:1px solid #252a40;
+    color:#999;
+    text-align:center;
+}
+
+/* موبايل */
+@media(max-width:900px){
+
+    .games{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .platforms{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .news{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        display:none;
+    }
+}
+
+@media(max-width:500px){
+
+    .hero{
+        min-height:380px;
+        padding:60px 7%;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .games{
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+    }
+
+    .platforms{
+        grid-template-columns:1fr;
+    }
+
+    .pic{
+        height:150px;
+        font-size:20px;
+    }
+
+    .info h3{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- الهيدر -->
+<header>
+
+<div class="logo">
+GAME<span>ZONE</span> 🎮
+</div>
+
+<nav>
+<a href="#home">الرئيسية</a>
+<a href="#games">الألعاب</a>
+<a href="#platforms">المنصات</a>
+<a href="#news">الأخبار</a>
+</nav>
+
+</header>
+
+
+<!-- البحث -->
+<div class="search-box">
+<input
+    type="text"
+    id="searchInput"
+    placeholder="🔎 ابحث عن لعبة..."
+>
+</div>
+
+
+<!-- الرئيسية -->
+<section class="hero" id="home">
+
+<div>
+
+<h1>
+عالم الألعاب<br>
+<span>بين يديك</span>
+</h1>
+
+<p>
+اكتشف أحدث الألعاب، اقرأ المراجعات،
+وتابع أخبار الألعاب لكل المنصات.
+</p>
+
+<a class="btn" href="#games">
+استكشف الآن 🎮
+</a>
+
+</div>
+
+</section>
+
+
+<!-- الألعاب -->
+<section id="games">
+
+<div class="title">
+
+<h2>🔥 أحدث الألعاب</h2>
+
+<span class="show-all" id="showAll">
+عرض الكل ←
+</span>
+
+</div>
+
+
+<div class="games" id="gamesContainer">
+
+
+<!-- Elden Ring -->
+<div
+class="card"
+data-name="Elden Ring"
+data-platform="PC"
+data-rating="4.8"
+data-description="لعبة أكشن ومغامرات وعالم مفتوح مليء بالأعداء والمغامرات."
+onclick="showGame(this)"
+>
+
+<div class="pic p1">
+ELDEN RING
+</div>
+
+<div class="info">
+<h3>Elden Ring</h3>
+<small>PC</small>
+<span class="star">★ 4.8</span>
+</div>
+
+</div>
+
+
+<!-- Call of Duty -->
+<div
+class="card"
+data-name="Call of Duty"
+data-platform="PC"
+data-rating="4.6"
+data-description="واحدة من أشهر ألعاب التصويب والحروب والمنافسات الجماعية."
+onclick="showGame(this)"
+>
+
+<div class="pic p2">
+CALL OF DUTY
+</div>
+
+<div class="info">
+<h3>Call of Duty</h3>
+<small>PC</small>
+<span class="star">★ 4.6</span>
+</div>
+
+</div>
+
+
+<!-- God of War -->
+<div
+class="card"
+data-name="God of War"
+data-platform="PlayStation"
+data-rating="4.9"
+data-description="مغامرة أسطورية مليئة بالأكشن والقصة القوية."
+onclick="showGame(this)"
+>
+
+<div class="pic p3">
+GOD OF WAR
+</div>
+
+<div class="info">
+<h3>God of War</h3>
+<small>PlayStation</small>
+<span class="star">★ 4.9</span>
+</div>
+
+</div>
+
+
+<!-- Forza -->
+<div
+class="card"
+data-name="Forza Horizon"
+data-platform="Xbox"
+data-rating="4.7"
+data-description="لعبة سباقات وعالم مفتوح لعشاق السيارات والسرعة."
+onclick="showGame(this)"
+>
+
+<div class="pic p4">
+FORZA
+</div>
+
+<div class="info">
+<h3>Forza Horizon</h3>
+<small>Xbox</small>
+<span class="star">★ 4.7</span>
+</div>
+
+</div>
+
+
+<!-- PUBG -->
+<div
+class="card"
+data-name="PUBG Mobile"
+data-platform="Mobile"
+data-rating="4.5"
+data-description="لعبة باتل رويال تنافس فيها لاعبين آخرين حتى يبقى لاعب واحد."
+onclick="showGame(this)"
+>
+
+<div class="pic p5">
+PUBG
+</div>
+
+<div class="info">
+<h3>PUBG Mobile</h3>
+<small>Mobile</small>
+<span class="star">★ 4.5</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="no-results" id="noResults">
+😔 مفيش ألعاب مطابقة للبحث
+</div>
+
+</section>
+
+
+<!-- المنصات -->
+<section id="platforms">
+
+<div class="title">
+<h2>🎮 تصفح حسب المنصة</h2>
+</div>
+
+<div class="platforms">
+
+
+<div class="platform">
+<h3>📱 Mobile Games</h3>
+<p>ألعاب الموبايل</p>
+<button onclick="filterPlatform('Mobile')">
+استكشف
+</button>
+</div>
+
+
+<div class="platform">
+<h3>💻 PC Games</h3>
+<p>ألعاب الكمبيوتر</p>
+<button onclick="filterPlatform('PC')">
+استكشف
+</button>
+</div>
+
+
+<div class="platform">
+<h3>🎮 PlayStation</h3>
+<p>ألعاب بلايستيشن</p>
+<button onclick="filterPlatform('PlayStation')">
+استكشف
+</button>
+</div>
+
+
+<div class="platform">
+<h3>🟢 Xbox Games</h3>
+<p>ألعاب إكس بوكس</p>
+<button onclick="filterPlatform('Xbox')">
+استكشف
+</button>
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- الأخبار -->
+<section id="news">
+
+<div class="news">
+
+
+<div class="box">
+
+<h2>🔥 الأكثر شعبية</h2>
+
+<ul>
+<li>GTA V ⭐ 4.8</li>
+<li>Minecraft ⭐ 4.7</li>
+<li>Fortnite ⭐ 4.4</li>
+<li>EA FC ⭐ 4.3</li>
+</ul>
+
+</div>
+
+
+<div class="box">
+
+<h2>⭐ أحدث المراجعات</h2>
+
+<ul>
+<li>The Legend of Zelda — 9.5</li>
+<li>Star Wars Jedi — 9.0</li>
+<li>Resident Evil 4 — 8.8</li>
+</ul>
+
+</div>
+
+
+<div class="box">
+
+<h2>📰 آخر الأخبار</h2>
+
+<ul>
+<li>أحدث أخبار عالم الألعاب</li>
+<li>تحديثات الألعاب الجديدة</li>
+<li>إعلانات الألعاب القادمة</li>
+</ul>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- نافذة تفاصيل اللعبة -->
+<div class="modal" id="gameModal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeModal()">×</span>
+
+<h2 class="modal-title" id="modalTitle">
+اسم اللعبة
+</h2>
+
+<p id="modalPlatform">
+المنصة
+</p>
+
+<div class="modal-rating" id="modalRating">
+★ 0.0
+</div>
+
+<p id="modalDescription">
+وصف اللعبة
+</p>
+
+<button class="btn" onclick="closeModal()">
+إغلاق
+</button>
+
+</div>
+
+</div>
+
+
+<!-- الفوتر -->
+<footer>
+
+<h2>GAMEZONE 🎮</h2>
+
+<p>
+بوابتك لعالم الألعاب
+</p>
+
+<p>
+© 2026 GameZone
+</p>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   فتح تفاصيل اللعبة
+========================= */
+
+function showGame(card){
+
+    const name = card.dataset.name;
+    const platform = card.dataset.platform;
+    const rating = card.dataset.rating;
+    const description = card.dataset.description;
+
+    document.getElementById("modalTitle").textContent = name;
+
+    document.getElementById("modalPlatform").textContent =
+        "🎮 المنصة: " + platform;
+
+    document.getElementById("modalRating").textContent =
+        "★ " + rating;
+
+    document.getElementById("modalDescription").textContent =
+        description;
+
+    document.getElementById("gameModal").style.display = "flex";
+}
+
+
+/* =========================
+   إغلاق النافذة
+========================= */
+
+function closeModal(){
+
+    document.getElementById("gameModal").style.display = "none";
+}
+
+
+/* إغلاق النافذة عند الضغط خارجها */
+
+document.getElementById("gameModal").addEventListener("click", function(e){
+
+    if(e.target === this){
+        closeModal();
+    }
+
+});
+
+
+/* =========================
+   البحث
+========================= */
+
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+searchInput.addEventListener("input", function(){
+
+    const search = this.value.toLowerCase().trim();
+
+    let found = 0;
+
+    cards.forEach(function(card){
+
+        const name = card.dataset.name.toLowerCase();
+        const platform = card.dataset.platform.toLowerCase();
+
+        if(
+            name.includes(search) ||
+            platform.includes(search)
+        ){
+
+            card.style.display = "block";
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    if(found === 0){
+
+        noResults.style.display = "block";
+
+    }else{
+
+        noResults.style.display = "none";
+
+    }
+
+});
+
+
+/* =========================
+   فلترة المنصات
+========================= */
+
+function filterPlatform(platform){
+
+    searchInput.value = "";
+
+    let found = 0;
+
+    cards.forEach(function(card){
+
+        if(card.dataset.platform === platform){
+
+            card.style.display = "block";
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    noResults.style.display =
+        found === 0 ? "block" : "none";
+
+    document.getElementById("games").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================
+   عرض كل الألعاب
+========================= */
+
+document.getElementById("showAll").addEventListener("click", function(){
+
+    searchInput.value = "";
+
+    cards.forEach(function(card){
+        card.style.display = "block";
+    });
+
+    noResults.style.display = "none";
+
+    document.getElementById("games").scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+
+/* =========================
+   زر ESC لإغلاق التفاصيل
+========================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Escape"){
+        closeModal();
+    }
+
+});
+
+</script>
+
+</body>
+  </html>
